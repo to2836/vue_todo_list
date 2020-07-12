@@ -3,9 +3,13 @@
         <!-- <router-link :to="{ name: 'Home'}"><font-awesome-icon style="marginRight:20px; width:50px;height:50px;" icon="clipboard-list" /></router-link> -->
         <font-awesome-icon v-b-toggle.sidebar-variant style="marginRight:20px; width:50px;height:50px;" icon="clipboard-list" />
         
-        <router-link class="title my-0 mr-md-auto font-weight-bold h2" :to="{ name: 'Home'}">
+        <!-- <router-link class="title my-0 mr-md-auto font-weight-bold h2" :to="{ name: 'Home'}">
             TODO List
-        </router-link>
+        </router-link> -->
+        <div @click="goHome" class="title my-0 mr-md-auto font-weight-bold h2">
+            TODO List
+        </div>
+        
         
         <!-- <h5 class="title my-0 mr-md-auto font-weight-bold h2">Clawsome</h5> -->
         <nav class="my-2 my-md-0 mr-md-3">
@@ -32,7 +36,7 @@
 export default {
     name:'Header',
     
-    mounted() {
+    beforeCreate() {
         this.$store.dispatch('checkAuth')
     },
     methods:{
@@ -41,6 +45,9 @@ export default {
         },
         handleOk(){
             this.$cookies.remove('token')
+            window.location.href='/'
+        },
+        goHome(){
             window.location.href='/'
         }
     }
@@ -51,6 +58,7 @@ export default {
     .title{
         color: rgb(88, 88, 86);
         text-decoration: none;
+        cursor: pointer;
     }
     img.site_icon{
         width: 60px;

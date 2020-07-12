@@ -19,7 +19,7 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^apiv1/', include('apiv1.urls')),
     url(r'^$', views.HomeView.as_view(), name='home'),

@@ -23,6 +23,7 @@ export default new Vuex.Store({
       },
       LOGOUT(state){
         state.isAuthenticated = false
+        router.push('/login')
       },
   },
   actions:{
@@ -33,7 +34,6 @@ export default new Vuex.Store({
             data:payload
         }).then(res=>{
             VueCookies.set('token',res)
-          
             this.commit('LOGIN')
             return 'success'
         }).catch(()=>'error')
@@ -51,7 +51,6 @@ export default new Vuex.Store({
         })
       },
       getTaskList(){
-
         return request({
           url:'/apiv1/task'
         }).then(res=>{
@@ -60,7 +59,6 @@ export default new Vuex.Store({
         }).catch(e=>{
           console.log(e)
         })
-
       },
       sendTaskData(state, payload){
         console.log('JWT '+VueCookies.get('token').token)
@@ -76,7 +74,6 @@ export default new Vuex.Store({
           window.location.href='/'
         }).catch(e=>{
           console.log(e)
-          
         })
       },
       updateTaskComplete(state, payload){
